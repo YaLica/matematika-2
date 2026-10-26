@@ -1,0 +1,416 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Колобок — Неочевидная математика · Занятие №2</title><meta name="description" content="Математические игры по сказке Колобок для детей 6 лет. Автор Яна Лисица."><link rel="stylesheet" href="base.css"><style>.cover{display:block;width:min(100%,650px);aspect-ratio:4/3;object-fit:contain;border-radius:24px;margin:24px auto}.small{font-size:16px;color:var(--muted)}.cards{display:grid;grid-template-columns:1fr 1fr;gap:16px}.game-card{text-align:left;background:var(--white);border:1px solid var(--line);border-radius:20px;padding:20px;cursor:pointer}.game-card h2{font-size:23px;font-weight:400;margin:7px 0}.game-card p{color:var(--muted);margin:6px 0}.game-card .num{font:12px Arial;color:var(--muted)}.game-card .launch{display:inline-block;color:var(--green);margin-top:12px}.board{background:var(--white);border:1px solid var(--line);border-radius:24px;padding:22px;min-height:280px;overflow:hidden}.controls{display:flex;gap:12px;flex-wrap:wrap}.game-toolbar h1{font-size:30px;margin:0}.game-toolbar{margin-top:24px}.game-count{flex-shrink:0}#task{font-weight:400;font-size:25px;line-height:1.3;margin-bottom:8px}.options,.row{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap}.options{margin-top:22px}.choice,.token,.place{border:2px solid var(--line);background:#fffdf8;border-radius:14px;min-width:48px;min-height:48px;padding:10px;cursor:pointer}.choice.selected,.token.selected,.place.selected{border-color:#3b624b;background:#e3eddc;box-shadow:0 0 0 2px #3b624b33}.hero{width:68px;height:68px;object-fit:contain;vertical-align:middle;pointer-events:none}.scene-thumb{width:150px;aspect-ratio:4/3;object-fit:contain;border-radius:12px}.token svg{width:34px;height:34px;display:block}.dots{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;max-width:190px}.dot{width:17px;height:17px;background:var(--green);border-radius:50%;display:inline-block}.bowl{width:250px;min-height:130px;border:7px solid #9c6e41;border-top:3px solid #9c6e41;border-radius:15px 15px 95px 95px;background:#eee1ce;padding:20px;display:flex;align-content:flex-start;justify-content:center;flex-wrap:wrap;gap:7px}.flour{width:35px;height:23px;background:#fffdf4;border:1px solid #d5c7af;border-radius:50% 50% 30% 30%}.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;max-width:500px;margin:auto}.cell{aspect-ratio:1;border:1px solid #d4dccb;border-radius:10px;background:#eaf0df;display:grid;place-items:center;position:relative}.cell .hero{width:80%;height:80%}.cell.wall{background:#a0b493}.goal{font-size:32px}.directions{font:25px Arial;letter-spacing:.15em;text-align:center;margin:15px}.arrow-pad{display:grid;grid-template-columns:repeat(3,54px);gap:5px;justify-content:center;margin-top:18px}.arrow-pad button{font-size:26px}.arrow-pad .up{grid-column:2}.arrow-pad .left{grid-column:1}.forest{height:280px;position:relative;background:linear-gradient(#f4f5e8 65%,#e2eacb 65%);border-radius:20px}.tree{position:absolute;left:14%;top:14%;width:22%;height:72%;z-index:3;pointer-events:none}.tree:before{content:'';position:absolute;width:22%;height:65%;left:40%;bottom:0;background:#9b7046;border-radius:12px}.tree:after{content:'';position:absolute;width:100%;height:65%;border-radius:48%;background:#97b477;border:6px solid #839e63}.stump{background:linear-gradient(90deg,#b88b58,#d2ab77,#ac794c);border:2px solid #987144;border-radius:45% 45% 12px 12px;position:relative}.stump:before{content:'';position:absolute;left:0;right:0;top:0;height:23%;border-radius:50%;background:#ead0a4;border:2px solid #a98453}.forest .stump{position:absolute;left:63%;top:60%;width:19%;height:29%;z-index:3;pointer-events:none}.place{position:absolute;padding:0;width:56px;height:56px;border-style:dashed;background:#ffffff9c;z-index:4;display:grid;place-items:center}.place .hero{width:65px;height:65px;max-width:none}.place.behind{z-index:2}.place.used{border-color:transparent;background:transparent}.river{position:relative;height:230px;background:linear-gradient(90deg,#e2eacb 0 var(--river-left,25%),#b9dce0 var(--river-left,25%) var(--river-right,75%),#e2eacb var(--river-right,75%));border-radius:18px;overflow:hidden}.river .hero{position:absolute;left:4%;top:90px;transition:left 1s}.river.crossed .hero{left:83%}.gap{position:absolute;left:25%;top:103px;width:50%;height:43px;border:2px dashed #587f80}.plank{height:43px;display:block;background:repeating-linear-gradient(90deg,#d4ad7b 0,#d4ad7b calc(var(--unit) - 2px),#936b3d calc(var(--unit) - 2px),#936b3d var(--unit));border:3px solid #936b3d;border-radius:5px}.river .plank{position:absolute;top:103px;left:25%;width:50%}.pattern{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center}.pattern-slot{display:grid;place-items:center;width:56px;height:64px;border:2px dashed #b7c6a6;border-radius:12px}.pattern-slot svg{width:34px;height:34px}.baskets{display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:center}.basket{border:3px solid #b78b54;border-radius:12px 12px 40px 40px;background:#f0e0c8;min-height:130px;padding:12px;display:flex;flex-wrap:wrap;justify-content:center;align-content:center;gap:6px}.basket .token{padding:6px;min-width:42px;min-height:42px}.basket-label{display:block;padding:10px;font-size:20px}.stumps{display:flex;gap:10px;align-items:flex-end;justify-content:center;min-height:140px}.stump-btn{width:calc(100% / 8);height:80px;cursor:pointer;padding:0;min-width:0}.stump-btn .hero{position:absolute;left:50%;bottom:52px;transform:translateX(-50%);width:58px;height:58px}.start-arrow{font-size:26px;color:var(--green);margin-bottom:14px}.story{display:grid;grid-template-columns:1fr 40px 1fr 40px 1fr;align-items:center;gap:8px}.story img{width:100%;aspect-ratio:4/3;object-fit:contain;border-radius:12px}.missing{aspect-ratio:4/3;border:2px dashed #a2b592;border-radius:12px;display:grid;place-items:center;font-size:36px;overflow:hidden}.story-options{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:25px}.story-options img{width:100%;aspect-ratio:4/3;object-fit:contain}.finish{text-align:center;padding:35px 10px}.finish h2{font-weight:400;font-size:30px}.game-status.good{color:#315b39}.game-status.retry{color:#895d39}.choice:disabled,.token:disabled{opacity:.65;cursor:default}button:focus-visible{outline:3px solid #bc782f;outline-offset:3px}@media(max-width:620px){.cards{grid-template-columns:1fr}.board{padding:12px;border-radius:18px}.game-toolbar{align-items:flex-start}.game-toolbar h1{font-size:25px}.game-count{font-size:12px}#task{font-size:22px}.row{gap:12px}.scene-thumb{width:110px}.story{grid-template-columns:1fr 15px 1fr 15px 1fr;gap:3px}.story-options{gap:5px}.story-options .choice{padding:4px}.stumps{gap:5px}.stump-btn{height:70px}.stump-btn .hero{width:45px;height:45px}.baskets{gap:8px}.basket{padding:8px}.forest{height:250px}.controls button{flex:1}.options{gap:8px}.pattern-slot{width:44px;height:55px}.token{padding:7px}.bowl{width:220px}}
+@media(prefers-reduced-motion:reduce){.river .hero{transition:none}}
+.river{max-width:520px;margin:auto}.river .hero{z-index:2}
+
+/* Точечные правки управления */
+.pattern-tools{margin-top:28px;padding:16px;border:1px solid var(--line);border-radius:16px;background:#f3f1e8;text-align:center}.pattern-tools p{margin:0}.pattern-tools .options{margin:12px 0}.pattern-tools #undoPattern{margin-top:4px}#board>#check{display:block;margin:22px auto 0}#board>#check[hidden]{display:none}.baskets{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center}.baskets>#check{align-self:center}.baskets>#check[hidden]{display:block;visibility:hidden}.baskets .scene-thumb{max-width:100%}.river.crossed .hero{left:calc(100% - 68px)}@media(max-width:620px){.baskets{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.baskets>div:first-child{grid-column:1;grid-row:1}.baskets>div:last-child{grid-column:2;grid-row:1}.baskets>#check{grid-column:1 / -1;grid-row:2;justify-self:center}.baskets .basket{padding:5px;gap:4px}}
+@media(max-width:620px){.baskets{grid-template-columns:minmax(0,1fr) 76px minmax(0,1fr);gap:4px}.baskets>div:first-child{grid-column:1;grid-row:1}.baskets>div:last-child{grid-column:3;grid-row:1}.baskets>#check{grid-column:2;grid-row:1;padding:10px 3px;font-size:12px;width:76px}.basket-label{font-size:16px}}
+
+/* Одна неподвижная кнопка проверки и перехода. */
+#board #check{width:136px;min-height:46px;flex-shrink:0;white-space:nowrap}#board #check:disabled{opacity:.45;cursor:default}.baskets>.game-button{justify-self:center}.basket{height:230px;min-height:230px;align-content:center}.game-status{min-height:52px;margin:12px 0}.baskets .basket .token{flex-shrink:0}.baskets>div{min-width:0}@media(max-width:620px){.basket{height:330px;min-height:330px}#board .baskets>#check{width:76px;min-height:46px;font-size:12px}.game-status{min-height:75px}}
+/* Устные задания вместо надписей: постоянный аудиоблок без скачущих кнопок. */
+.voice-area{min-height:52px;display:flex;align-items:center;justify-content:center;margin:12px auto 16px}
+.voice-area button{min-height:46px}
+.voice-area .voice-error{font-size:14px;color:#895d39;text-align:center}
+.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+/* Дорожка Колобка: показываем ошибочные шаги только после завершения маршрута. */
+.route-steps{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:7px;margin:15px auto}
+.route-step{font:26px Arial,sans-serif;display:inline-grid;place-items:center;width:40px;height:44px;border:2px solid transparent;border-radius:10px}
+.route-step.route-wrong{color:#8d3434;background:#ffebe6;border-color:#c65d4e;font-weight:bold}
+@keyframes routeWrongBlink{0%,100%{background:#ffebe6;box-shadow:0 0 0 0 #c65d4e88}50%{background:#ffb2a5;box-shadow:0 0 0 5px #c65d4e44}}
+.route-step.route-wrong{animation:routeWrongBlink .75s ease-in-out 3}
+@media(prefers-reduced-motion:reduce){.route-step.route-wrong{animation:none}}
+.route-step.route-right{color:#2e6245;background:#e4f0de;border-color:#95bb8a}
+.route-review{margin-top:12px;padding:12px;border:1px solid #e1c4b6;border-radius:12px;background:#fff8f1;text-align:center}
+.route-review p{margin:0 0 7px;color:#754238;font-size:15px}
+.route-review .route-steps{margin:4px auto}
+@media(max-width:620px){.route-step{width:35px;height:40px;font-size:23px}.route-steps{gap:3px}}
+
+.retell-view{max-width:850px;margin:auto}.retell-view>img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:contain;border-radius:20px}.retell-controls{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:18px 0}.material audio{width:100%}[hidden]{display:none!important} .game-card.is-loading{opacity:.65}
+</style></head><body><div class="shell"><header class="masthead"><div class="brand-block"><div class="brand"><img class="brand-avatar" src="avatar.jpg" width="54" height="54" alt="Аватарка канала: школьный рюкзак у открытых дверей школы" draggable="false"><span>Скоро в школу</span></div><p class="brand-tagline">Маленькими шагами к большим открытиям</p></div><span class="masthead-note">Занимаемся вместе</span></header><main><section id="home" class="page"><h1 class="heading">ЗАНЯТИЕ <span class="lesson-number">№ 2</span></h1>
+<div class="menu-row"><div class="row-label"><span class="section-index">01</span><h2>ТЕМА</h2></div><div class="topic-entry"><p class="topic-prompt">Послушай сказку и вспомни героев</p><a class="tile section-cover" href="#lesson" style="background:var(--sage)"><span><strong>Колобок. Математика в сказке</strong></span><span class="arrow" aria-hidden="true">↗</span></a></div></div>
+<div class="menu-row"><div class="row-label"><span class="section-index">02</span><h2>Играем и рассуждаем</h2></div><div class="topic-entry"><p class="topic-prompt">Игры</p><a class="tile picture-tile retell-cover" href="#menu"><img src="games-cover.jpg" alt="Игры с героями сказки Колобок" width="1200" height="900"><span class="arrow tile-arrow" aria-hidden="true">↗</span></a></div></div>
+<div class="menu-row"><div class="row-label"><span class="section-index">03</span><h2>Рассказываем сами</h2><p>Пересказ с опорой на картинки</p></div><a class="tile section-cover" href="#retell" style="background:var(--sage)"><span><strong>Пересказ по картинкам</strong></span><span class="arrow" aria-hidden="true">↗</span></a></div>
+<div class="menu-row"><div class="row-label"><span class="section-index">04</span><h2>Файлы для скачивания</h2></div><div class="topic-entry"><p class="topic-prompt">Материалы для печати</p><a class="tile section-cover" href="#files" style="background:var(--sage)"><span><strong>Материалы для скачивания</strong></span><span class="arrow" aria-hidden="true">↗</span></a></div></div></section>
+<section id="lesson" class="page" hidden><a class="back" href="#home">← Назад к занятию</a><h1 class="detail-title">Колобок</h1><div class="material"><p class="topic-prompt">Послушай сказку и вспомни героев.</p><audio id="storyAudio" controls preload="metadata" controlslist="nodownload" src="КОЛОБОК.mp3" aria-label="Сказка Колобок"></audio></div></section>
+<section id="retell" class="page" hidden><a class="back" href="#home">← Назад к занятию</a><h1 class="detail-title">Пересказ по картинкам</h1><div class="retell-view"><img id="retellImage" src="kolobok_01.jpg" alt="Кадр 1" width="1200" height="900"><div class="retell-controls"><button class="game-button" id="retellPrev">← Назад</button><span id="retellCount" aria-live="polite">1 / 29</span><button class="game-button" id="retellNext">Вперёд →</button></div></div></section>
+<section id="files" class="page" hidden><a class="back" href="#home">← Назад к занятию</a><h1 class="detail-title">Материалы для скачивания</h1><div class="material"><h2>Дедушка</h2><div class="controls"><a class="game-button" href="Дедушка.pdf" target="_blank" rel="noopener">Открыть PDF</a><a class="game-button" href="Дедушка.pdf" download>Скачать PDF</a></div></div><div class="material"><h2>Бабушка</h2><div class="controls"><a class="game-button" href="Бабушка.pdf" target="_blank" rel="noopener">Открыть PDF</a><a class="game-button" href="Бабушка.pdf" download>Скачать PDF</a></div></div><div class="material"><h2>Колобок Колобок</h2><div class="controls"><a class="game-button" href="Колобок Колобок.pdf" target="_blank" rel="noopener">Открыть PDF</a><a class="game-button" href="Колобок Колобок.pdf" download>Скачать PDF</a></div></div><div class="material"><h2>Волк</h2><div class="controls"><a class="game-button" href="Волк.pdf" target="_blank" rel="noopener">Открыть PDF</a><a class="game-button" href="Волк.pdf" download>Скачать PDF</a></div></div><div class="material"><h2>Лиса</h2><div class="controls"><a class="game-button" href="Лиса.pdf" target="_blank" rel="noopener">Открыть PDF</a><a class="game-button" href="Лиса.pdf" download>Скачать PDF</a></div></div><div class="material"><h2>Медведь</h2><div class="controls"><a class="game-button" href="Медведь.pdf" target="_blank" rel="noopener">Открыть PDF</a><a class="game-button" href="Медведь.pdf" download>Скачать PDF</a></div></div></section><section id="menu" class="page" hidden><a class="back" href="#home">← Назад к занятию</a><h1 class="heading">Неочевидная математика <span class="lesson-number">№ 2</span></h1><p class="intro-copy">Колобок · Математические игры · 6 лет</p><p class="detail-lead small">Выберите игру. В каждом приключении — четыре задания.</p><div id="cards" class="cards"></div></section><section id="play" class="page" hidden><button id="back" class="game-button">← К играм</button><div class="game-toolbar"><h1 id="title" class="detail-title"></h1><span id="count" class="game-count"></span></div><progress id="progress" class="game-progress" max="4" value="0"></progress><div id="voiceArea" class="voice-area"><button type="button" id="voiceStart" class="game-button primary" hidden>Начать</button><button type="button" id="voiceReplay" class="game-button" hidden>🔊 Прослушать задание</button><span id="voiceError" class="voice-error" hidden></span></div><h2 id="task" class="sr-only" tabindex="-1"></h2><p id="hint" class="sr-only"></p><div id="board" class="board"></div><p id="status" class="game-status" role="status" aria-live="polite"></p><div class="controls"><button id="reset" class="game-button">Сначала</button><button id="check" class="game-button primary">Проверить</button><button id="next" class="game-button primary" hidden>Дальше →</button></div></section></main><footer class="site-footer"><span class="footer-brand">Скоро в школу<span class="footer-author">Автор Яна Лисица</span></span><div class="footer-community"><span class="community-label">Учиться вместе с каналом</span><nav class="channel-links" aria-label="Наши каналы"><a class="channel-button channel-max" href="https://max.ru/join/7GgqgVmJiEVKrGTAPHKzm1-0tMqAwEvrZRcc2mH_MXI" target="_blank" rel="noopener noreferrer" aria-label="Открыть канал Скоро в школу в МАХ">МАХ <span aria-hidden="true">↗</span></a><a class="channel-button channel-telegram" href="https://t.me/skorouzheshkola" target="_blank" rel="noopener noreferrer" aria-label="Открыть канал Скоро в школу в Telegram">Telegram <span aria-hidden="true">↗</span></a></nav></div></footer></div><script>'use strict';
+const $=id=>document.getElementById(id);
+const names=['Помоги бабушке замесить тесто','Дорожка Колобка','Спрячь Колобка','Почини мостик','Продолжи лесную дорожку','Зайцу и медведю — поровну','Который пенёк?','Что пропустил художник?'];
+const leads=['Отмерь нужное количество муки.','Проведи героя по клеткам.','Найди место по подсказке.','Подбери дощечку по длине.','Разгадай и продолжи узор.','Уравняй яблоки в корзинках.','Считай по порядку от стрелки.','Восстанови событие сказки.'];
+const sounds={yes:new Audio('победа.mp3'),no:new Audio('проигрыш.mp3')};
+let game=0,round=0,solved=false,state={},dragValue=null;
+/*
+  ИМЕНА MP3 нужно взять ТОЛЬКО из присланных пользователем файлов.
+  До загрузки записей ничего не подменять синтезированным голосом.
+  game 0: два вступительных файла, только один раз в начале игры;
+  игры 1–7: допустим один файл на всю игру либо 4 файла по раундам.
+  Например: 1:['точное-имя.mp3'] или 6:['раунд1.mp3','раунд2.mp3','раунд3.mp3','раунд4.mp3'].
+*/
+const TASK_MP3={
+  0:['Помоги бабушке замесить тесто - 1.mp3','Помоги бабушке замесить тесто - 2.mp3'], // Один раз подряд после кнопки «Начать»
+  1:['Дорожка Колобка.mp3'], // Один раз при входе в игру
+  2:['Спрячь Колобка за дерево..mp3','Поставь Колобка перед пеньком..mp3','Поставь Колобка между деревом и пеньком..mp3','Поставь Колобка на пенёк..mp3','Поставь Колобка перед деревом..mp3'], // Пять заданий, выбор по перемешанному порядку
+  3:['Выбери дощечку, которая точно закроет промежуток..mp3'], // Один раз по кнопке «Начать»
+  4:['Продолжи узор на дорожке..mp3'], // Один раз после «Начать» при каждом новом прохождении
+  5:['Сделай так, чтобы у зайца и медведя стало яблок поровну..mp3'], // Однократно после «Начать»
+  6:[
+    'Останови Колобка у второго пенька.mp3',
+    'Останови Колобка у третьего пенька.mp3',
+    'Останови Колобка у четвёртого пенька1..mp3',
+    'Останови Колобка у пятого пенька.mp3',
+    'Останови Колобка у шестого пенька.mp3',
+    'Останови Колобка у седьмого пенька.mp3',
+    'Останови Колобка у последнего пенька.mp3'
+  ], // Задания назначаются по значению порядкового числа
+  7:['Что пропустил художни.mp3'] // Однократно по кнопке «Начать» в первом раунде
+};
+let titlePlayer=null,titleSession=0;
+let instructionPlayer=null,instructionSession=0,grandmaPlayed=false,routePlayed=false,bridgePlayed=false,patternPlayed=false,equalPlayed=false,storyPlayed=false;
+let flourTargets=[],lastFirstFlourTarget=null;
+let spatialDeck=[],lastFirstSpatialId=null;
+let bridgeTargets=[],lastFirstBridgeTarget=null;
+let patternDeck=[],lastFirstPatternId=null;
+let routeDeck=[],lastFirstRouteId=null,lastFirstRouteStart=null;
+let ordinalDeck=[],lastFirstOrdinalId=null;
+function stopInstruction(){
+  instructionSession++;
+  if(instructionPlayer){instructionPlayer.pause();instructionPlayer.currentTime=0;instructionPlayer.onended=null;instructionPlayer.onerror=null;instructionPlayer=null;}
+}
+function showVoiceMessage(msg){
+  $('voiceError').textContent=msg;
+  $('voiceError').hidden=!msg;
+}
+function speakInstructions(force=false){
+  stop();stopTitle();stopInstruction();
+  const sources=game===2?[spatialDeck[round]?.audio].filter(Boolean):game===6?[ordinalDeck[round]?.audio].filter(Boolean):(TASK_MP3[game]||[]);
+  // Два вводных аудио бабушки звучат подряд только при первом открытии игры.
+  if(game===0){
+    $('voiceReplay').hidden=true;
+    if(grandmaPlayed)return;
+    if(sources.length!==2){showVoiceMessage('Не подключены две вводные MP3-записи этой игры.');return;}
+    grandmaPlayed=true;
+  }else{
+    $('voiceReplay').hidden=[1,2,3,4,5,6,7].includes(game)||sources.length===0;
+    if(game===1&&!force){
+      if(routePlayed)return; // не озвучивать снова при каждом новом раунде или сбросе
+    }
+    if(game===3&&!force&&bridgePlayed)return; // Для мостика голос звучит один раз за прохождение
+    if(game===4&&!force&&patternPlayed)return; // Для узоров — один раз за прохождение
+    if(game===5&&!force&&equalPlayed)return; // Для корзинок — один раз за прохождение
+    if(game===7&&!force&&storyPlayed)return; // Для художника — один раз за прохождение
+    if(!sources.length){showVoiceMessage('MP3-задание пока не подключено.');return;}
+    if(game===1&&!force)routePlayed=true;
+    if(game===3&&!force)bridgePlayed=true;
+    if(game===4&&!force)patternPlayed=true;
+    if(game===5&&!force)equalPlayed=true;
+    if(game===7&&!force)storyPlayed=true;
+  }
+  showVoiceMessage('');
+  if([0,1,2,3,4,5,6,7].includes(game))$('voiceStart').hidden=true;
+  const queue=game===0?sources:[sources[Math.min(round,sources.length-1)]];
+  const session=instructionSession;
+  let index=0;
+  const playNext=()=>{
+    if(session!==instructionSession||index>=queue.length)return;
+    const file=queue[index++];
+    const a=instructionPlayer||new Audio();
+    a.src=file;
+    instructionPlayer=a;
+    a.preload='auto';
+    a.onended=()=>{if(session===instructionSession)playNext();};
+    a.onerror=()=>{if(session===instructionSession){showVoiceMessage('Не удалось открыть аудио: '+file);if(game===7){storyPlayed=false;$('voiceStart').hidden=false;} }};
+    a.play().catch(()=>{
+      if(session!==instructionSession)return;
+      if([0,1,2,3,4,5,6,7].includes(game)){
+        showVoiceMessage('Звук не включился. Нажми «Начать» ещё раз.');
+        $('voiceStart').hidden=false;
+        if(game===0)grandmaPlayed=false;
+        if(game===1)routePlayed=false;
+        if(game===3)bridgePlayed=false;
+        if(game===4)patternPlayed=false;
+        if(game===5)equalPlayed=false;
+        if(game===7)storyPlayed=false;
+        stopInstruction();
+      }else{
+        showVoiceMessage('Нажмите «Прослушать задание», чтобы включить звук.');
+        $('voiceReplay').hidden=false;
+      }
+    });
+  };
+  playNext();
+}
+function shuffledBridgeTargets(){
+  // Разная реальная ширина речки в каждом раунде и при новом прохождении.
+  const a=shuffle([3,4,5,6]);
+  if(lastFirstBridgeTarget!==null&&a[0]===lastFirstBridgeTarget){
+    const j=a.findIndex(x=>x!==lastFirstBridgeTarget);
+    [a[0],a[j]]=[a[j],a[0]];
+  }
+  lastFirstBridgeTarget=a[0];
+  return a;
+}
+function shuffledFlourTargets(){
+  let a=shuffle([4,5,6,7,8]);
+  if(lastFirstFlourTarget!==null&&a[0]===lastFirstFlourTarget){
+    const j=a.findIndex(v=>v!==lastFirstFlourTarget);
+    [a[0],a[j]]=[a[j],a[0]];
+  }
+  lastFirstFlourTarget=a[0];
+  return a.slice(0,4);
+}
+const hero=()=>'<img class="hero" src="kolobok.png" alt="Колобок">';
+const pic=(n,alt='Картинка сказки')=>`<img src="kolobok_${String(n).padStart(2,'0')}.jpg" alt="${alt}">`;
+function icon(kind){const shapes={leaf:'<path d="M12 44C-2 15 24 3 48 5C47 31 34 49 12 44Z" fill="#91ac61" stroke="#5b7740" stroke-width="2"/><path d="M8 50L39 14" stroke="#5b7740" stroke-width="2"/>',cone:'<ellipse cx="28" cy="29" rx="17" ry="24" fill="#a3774e"/><path d="M15 14L28 23L41 14M12 25L28 35L44 25M14 37L28 45L42 37" fill="none" stroke="#704a31" stroke-width="3"/>',apple:'<path d="M28 17C4 1 0 31 12 46Q20 55 28 49Q38 55 46 44C57 19 45 5 28 17" fill="#c96b52" stroke="#9b4f3d" stroke-width="2"/><path d="M28 18L30 5" stroke="#775938" stroke-width="4"/><path d="M31 10Q37 0 48 6Q43 16 31 10" fill="#7e9c54"/>'};return `<svg viewBox="0 0 56 56" role="img" aria-label="${{leaf:'Лист',cone:'Шишка',apple:'Яблоко'}[kind]}">${shapes[kind]}</svg>`;}
+function stop(){Object.values(sounds).forEach(a=>{a.pause();a.currentTime=0;});}
+function stopAll(){stopTitle();stopInstruction();stop();const a=$('storyAudio');if(a)a.pause();}
+function sound(ok){stopInstruction();stopTitle();stop();sounds[ok?'yes':'no'].play().catch(()=>{});}
+function feedback(ok,msg){$('status').textContent=msg;$('status').className='game-status '+(ok?'good':'retry');sound(ok);}
+function win(){if(solved)return;solved=true;feedback(true,'Получилось! Можно идти дальше.');$('progress').value=round+1;$('check').hidden=false;$('check').disabled=false;$('check').textContent='Дальше →';$('next').hidden=true;if(game===3){const plank=document.createElement('div');plank.className='plank';plank.style.setProperty('--unit',`${state.unit}px`);plank.style.width=state.riverWidth+'px';plank.style.left=state.riverLeft+'px';$('river').append(plank);$('river').classList.add('crossed');}}
+function fail(msg='Пока не получилось. Попробуй ещё раз — всё можно исправить.'){feedback(false,msg);}
+function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function button(text,fn,cls='choice'){const b=document.createElement('button');b.type='button';b.className=cls;b.innerHTML=text;b.onclick=()=>{if(!solved)fn(b);};return b;}
+function draggable(el,value){el.draggable=true;el.ondragstart=e=>{dragValue=value;e.dataTransfer.setData('text/plain',String(value));};el.ondragend=()=>{dragValue=null;};}
+function drop(el,fn){el.ondragover=e=>e.preventDefault();el.ondrop=e=>{e.preventDefault();if(!solved&&dragValue!==null)fn(dragValue);dragValue=null;};}
+function task(t,h=''){ $('task').textContent=t;$('hint').textContent=h; }
+function init(){$('play').querySelector('.controls').prepend($('check'));state={};solved=false;stopAll();$('count').textContent=`${round+1} / 4`;$('progress').value=round;$('status').textContent='';$('status').className='game-status';$('check').hidden=game===1;$('check').disabled=![0,5,6].includes(game);$('check').textContent=game===6?'Остановить':([0,5].includes(game)?'Проверить':'Дальше →');$('next').hidden=true;$('reset').hidden=false;$('board').innerHTML='';renderers[game]();if(game!==5)$('board').append($('check'));if(game===5)$('baskets').insertBefore($('check'),$('baskets').children[1]);
+  const needsStart=(game===0&&!grandmaPlayed)||(game===1&&!routePlayed)||(game===2&&round===0)||(game===3&&!bridgePlayed&&round===0)||(game===4&&!patternPlayed&&round===0)||(game===5&&!equalPlayed&&round===0)||(game===6&&round===0)||(game===7&&round===0&&!storyPlayed);
+  $('voiceStart').hidden=!needsStart;
+  $('voiceReplay').hidden=true;
+  showVoiceMessage('');
+  // Во втором, третьем, четвёртом раундах «Спрячь Колобка» запись звучит
+  // сразу после кнопки «Дальше», без повторного нажатия «Начать».
+  if((game===2||game===6)&&round>0)speakInstructions(); // Следующий вопрос звучит без второй кнопки «Начать»
+}
+function openGame(i){game=i;round=0;grandmaPlayed=false;routePlayed=false;bridgePlayed=false;patternPlayed=false;equalPlayed=false;storyPlayed=false;if(i===1)newRouteDeck();if(i===6)newOrdinalDeck();if(i===0)flourTargets=shuffledFlourTargets();if(i===2)newSpatialDeck();if(i===3)bridgeTargets=shuffledBridgeTargets();if(i===4)newPatternDeck();if(i===7)newStoryDeck();$('menu').hidden=true;$('play').hidden=false;$('title').textContent=names[i];init();$('task').focus();window.scrollTo(0,0);}
+function menu(){stopAll();$('play').hidden=true;$('menu').hidden=false;window.scrollTo(0,0);}
+function finish(){$('play').querySelector('.controls').prepend($('check'));stopAll();$('voiceReplay').hidden=true;$('voiceStart').hidden=true;showVoiceMessage('');$('count').textContent='4 / 4';$('progress').value=4;task('Все четыре задания выполнены!');$('board').innerHTML=`<div class="finish">${hero()}<h2>Отличная работа!</h2><p>Можно повторить игру или выбрать другое приключение.</p></div>`;$('status').textContent='';$('check').hidden=true;$('next').hidden=true;$('reset').hidden=true;const b=button('Играть ещё раз',()=>openGame(game),'game-button primary');b.onclick=()=>openGame(game);$('board').firstElementChild.append(b);}
+const board=()=>$('board');
+function flour(){state.n=0;state.target=flourTargets[round];task('Собери в миску столько мерок муки, сколько точек на образце.','Нажимай на мерку или перетаскивай её в миску. Лишнюю мерку можно убрать.');board().innerHTML=`<div class="row"><img class="scene-thumb" src="kolobok_08.jpg" alt="Бабушка собрала муку"><div><p>Образец</p><div class="dots">${'<span class="dot"></span>'.repeat(state.target)}</div></div></div><div class="row" style="margin-top:25px"><button id="scoop" class="choice" aria-label="Добавить одну мерку муки">🥄<br>Одна мерка</button><div id="bowl" class="bowl" aria-label="Миска"></div></div><div class="options"><button id="remove" class="game-button">Убрать одну</button></div>`;const update=()=>{$('bowl').innerHTML='<span class="flour"></span>'.repeat(state.n);$('bowl').setAttribute('aria-label',`В миске ${state.n} мерок`);$('remove').disabled=!state.n;};const add=()=>{if(!solved&&state.n<10){state.n++;update();}};$('scoop').onclick=add;draggable($('scoop'),'flour');drop($('bowl'),add);$('remove').onclick=()=>{if(!solved&&state.n){state.n--;update();}};update();}
+// 30 проверенных маршрутов: 6 начальных на 4 шага; затем 5–6, 7–8 и 9–10 шагов.
+const routes=[{"tier":"easy","start":[1,1],"moves":["D","L","U","U"],"goal":[0,0]},{"tier":"easy","start":[4,2],"moves":["U","U","L","D"],"goal":[3,1]},{"tier":"easy","start":[2,2],"moves":["R","R","D","L"],"goal":[3,3]},{"tier":"easy","start":[3,1],"moves":["D","L","U","L"],"goal":[1,1]},{"tier":"easy","start":[3,2],"moves":["U","R","D","D"],"goal":[4,3]},{"tier":"easy","start":[3,2],"moves":["U","U","L","D"],"goal":[2,1]},{"tier":"medium","start":[2,1],"moves":["R","R","U","L","L","L"],"goal":[1,0]},{"tier":"medium","start":[0,3],"moves":["U","R","U","L","U"],"goal":[0,0]},{"tier":"medium","start":[0,3],"moves":["R","U","R","R","U"],"goal":[3,1]},{"tier":"medium","start":[4,0],"moves":["D","L","D","D","L","U"],"goal":[2,2]},{"tier":"medium","start":[0,3],"moves":["R","U","R","U","U","L"],"goal":[1,0]},{"tier":"medium","start":[4,2],"moves":["D","L","L","L","L"],"goal":[0,3]},{"tier":"medium","start":[1,3],"moves":["L","U","U","R","R","R"],"goal":[3,1]},{"tier":"medium","start":[2,2],"moves":["D","L","L","U","U","U"],"goal":[0,0]},{"tier":"hard","start":[3,2],"moves":["U","R","D","D","L","L","L"],"goal":[1,3]},{"tier":"hard","start":[2,3],"moves":["U","L","U","R","U","L","L","D"],"goal":[0,1]},{"tier":"hard","start":[3,0],"moves":["R","D","D","D","L","U","U","L"],"goal":[2,1]},{"tier":"hard","start":[1,3],"moves":["R","R","R","U","U","L","D","L"],"goal":[2,2]},{"tier":"hard","start":[3,3],"moves":["U","U","U","L","D","L","D","D"],"goal":[1,3]},{"tier":"hard","start":[4,2],"moves":["L","U","U","L","L","L","D"],"goal":[0,1]},{"tier":"hard","start":[0,0],"moves":["R","D","R","U","R","R","D"],"goal":[4,1]},{"tier":"hard","start":[1,0],"moves":["D","D","R","D","R","R","U","L"],"goal":[3,2]},{"tier":"expert","start":[3,0],"moves":["L","D","R","D","D","L","U","L","L","U"],"goal":[0,1]},{"tier":"expert","start":[1,0],"moves":["D","R","D","D","R","U","R","U","L"],"goal":[3,1]},{"tier":"expert","start":[3,2],"moves":["D","R","U","U","L","L","D","L","L"],"goal":[0,2]},{"tier":"expert","start":[4,1],"moves":["D","L","U","L","U","L","D","D","R","D"],"goal":[2,3]},{"tier":"expert","start":[4,1],"moves":["D","L","L","D","L","U","L","U","U","R"],"goal":[1,0]},{"tier":"expert","start":[4,3],"moves":["L","L","L","U","L","U","U","R","D"],"goal":[1,1]},{"tier":"expert","start":[3,0],"moves":["R","D","D","L","U","L","L","D","R","D"],"goal":[2,3]},{"tier":"expert","start":[3,2],"moves":["L","U","U","R","R","D","D","D","L"],"goal":[3,3]}];
+function newRouteDeck(){
+  const take=(tier)=>shuffle(routes.map((q,i)=>({q,i})).filter(({q})=>q.tier===tier));
+  const first=take('easy');
+  // При каждом новом прохождении другое начальное задание и другая стартовая клетка.
+  const available=first.filter(({q,i})=>i!==lastFirstRouteId&&q.start.join(',')!==lastFirstRouteStart);
+  const chosen=(available.length?available:first.filter(({i})=>i!==lastFirstRouteId))[0];
+  lastFirstRouteId=chosen.i;
+  lastFirstRouteStart=chosen.q.start.join(',');
+  routeDeck=[chosen.q,take('medium')[0].q,take('hard')[0].q,take('expert')[0].q];
+}
+
+function route(){
+  const q=routeDeck[round];
+  state.pos=[...q.start];
+  state.path=[];
+  state.finished=false;
+  task('Прокати Колобка по стрелкам к пеньку.','Каждая стрелка — один шаг. Управляй кнопками под полянкой; можно вернуться на старт.');
+  const arrows={R:'→',L:'←',U:'↑',D:'↓'};
+  const deltas={U:[0,-1],D:[0,1],R:[1,0],L:[-1,0]};
+  board().innerHTML='<div id="routeSteps" class="route-steps" aria-label="Последовательность стрелок маршрута"></div><div id="grid" class="grid"></div><div id="pad" class="arrow-pad"></div>';
+  const expected=$('routeSteps');
+  q.moves.forEach((m,i)=>{
+    const el=document.createElement('span');
+    el.className='route-step';
+    el.textContent=arrows[m];
+    el.setAttribute('aria-label',`Шаг ${i+1}: ${ {R:'вправо',L:'влево',U:'вверх',D:'вниз'}[m] }`);
+    expected.append(el);
+  });
+  const update=()=>{
+    $('grid').innerHTML='';
+    for(let y=0;y<4;y++)for(let x=0;x<5;x++){
+      const c=document.createElement('div');c.className='cell';
+      if(x===state.pos[0]&&y===state.pos[1])c.innerHTML=hero();
+      else if(x===q.goal[0]&&y===q.goal[1])c.innerHTML='<span class="goal" aria-label="Пенёк">🪵</span>';
+      $('grid').append(c);
+    }
+  };
+  const showMistakes=()=>{
+    [...expected.children].forEach((el,i)=>{
+      const wrong=state.path[i]!==q.moves[i];
+      el.classList.add(wrong?'route-wrong':'route-right');
+    });
+  };
+  [['U','↑','up','Вверх'],['L','←','left','Влево'],['D','↓','','Вниз'],['R','→','','Вправо']].forEach(([m,label,cls,aria])=>{
+    const b=button(label,()=>{
+      if(solved||state.finished)return;
+      // Любой выбор стрелки считается шагом. Ошибку оцениваем только в конце.
+      state.path.push(m);
+      const d=deltas[m];
+      const p=state.pos.map((v,i)=>v+d[i]);
+      if(p[0]>=0&&p[0]<5&&p[1]>=0&&p[1]<4)state.pos=p;
+      update();
+      if(state.path.length===q.moves.length){
+        state.finished=true;
+        if(correct()&&state.pos[0]===q.goal[0]&&state.pos[1]===q.goal[1]){
+          win();
+        }else{
+          showMistakes();
+          sound(false); // Один звук проигрыша после полного маршрута; текст под полем не показываем.
+        }
+        $('pad').querySelectorAll('button').forEach(btn=>btn.disabled=true);
+      }
+    },'game-button '+cls);
+    b.setAttribute('aria-label',aria);$('pad').append(b);
+  });
+  update();
+}
+const spatial=[
+  {text:'Спрячь Колобка за дерево.',answer:0,audio:TASK_MP3[2][0]},
+  {text:'Поставь Колобка перед пеньком.',answer:3,audio:TASK_MP3[2][1]},
+  {text:'Поставь Колобка между деревом и пеньком.',answer:2,audio:TASK_MP3[2][2]},
+  {text:'Поставь Колобка на пенёк.',answer:4,audio:TASK_MP3[2][3]},
+  {text:'Поставь Колобка перед деревом.',answer:1,audio:TASK_MP3[2][4]}
+];
+// Каждое прохождение: четыре разных задания из пяти, в случайном порядке.
+// Первое задание не совпадает с первым заданием прошлого прохождения.
+function newSpatialDeck(){
+  const ids=shuffle(spatial.map((_,i)=>i));
+  if(lastFirstSpatialId!==null&&ids[0]===lastFirstSpatialId){
+    const j=ids.findIndex(i=>i!==lastFirstSpatialId);
+    [ids[0],ids[j]]=[ids[j],ids[0]];
+  }
+  lastFirstSpatialId=ids[0];
+  spatialDeck=ids.slice(0,4).map(i=>spatial[i]);
+}
+function hide(){state.selected=false;state.place=null;task(spatialDeck[round].text,'Выбери Колобка, затем кружок на полянке. Можно перетащить Колобка.');board().innerHTML='<div class="row"><button id="pick" class="token" aria-label="Выбрать Колобка">'+hero()+'</button></div><div id="forest" class="forest"><div class="tree"></div><div class="stump"></div></div>';const points=[[25,62,'behind','За деревом'],[20,78,'','Перед деревом'],[44,64,'','Между деревом и пеньком'],[68,78,'','Перед пеньком'],[68,43,'','На пеньке']];function place(i){if(!state.selected)return;state.place=i;document.querySelectorAll('.place').forEach((el,j)=>{el.innerHTML=i===j?hero():'';el.classList.toggle('used',i===j);el.setAttribute('aria-pressed',String(i===j));});$('pick').classList.remove('selected');state.selected=false;if(correct())win();else fail();}$('pick').onclick=()=>{if(!solved){state.selected=true;$('pick').classList.add('selected');}};draggable($('pick'),'hero');points.forEach(([x,y,cls,aria],i)=>{const b=button('',()=>place(i),'place '+cls);b.style.left=x+'%';b.style.top=y+'%';b.setAttribute('aria-label',aria);drop(b,()=>{state.selected=true;place(i);});$('forest').append(b);});}
+function bridge(){
+  state.choice=null;
+  state.target=bridgeTargets[round];
+  task('Выбери дощечку, которая точно закроет промежуток.','Сравни длину дощечек с промежутком. Все деления одинаковые.');
+  board().innerHTML='<div id="river" class="river">'+hero()+'<div id="gap" class="gap"></div></div><div id="planks" class="options"></div>';
+  const river=$('river');
+  // Длина одного деления одинаковая в этом раунде; ширина воды зависит от задания.
+  state.unit=Math.max(18,Math.min(48,Math.floor(river.clientWidth/10)));
+  state.riverWidth=state.unit*state.target;
+  state.riverLeft=Math.round((river.clientWidth-state.riverWidth)/2);
+  const riverRight=state.riverLeft+state.riverWidth;
+  river.style.setProperty('--river-left',state.riverLeft+'px');
+  river.style.setProperty('--river-right',riverRight+'px');
+  const gap=$('gap');
+  gap.style.width=state.riverWidth+'px';
+  gap.style.left=state.riverLeft+'px';
+  shuffle([state.target-1,state.target,state.target+1]).forEach(n=>{
+    const length=state.unit*n;
+    const b=button(`<span class="plank" style="width:${length}px;--unit:${state.unit}px"></span>`,el=>{
+      state.choice=n;
+      document.querySelectorAll('#planks button').forEach(x=>x.classList.remove('selected'));
+      el.classList.add('selected');
+      if(correct())win();else fail('Эта дощечка не подходит по длине. Выбери другую.');
+    },'choice');
+    b.setAttribute('aria-label',`Дощечка из ${n} делений`);
+    $('planks').append(b);
+  });
+}
+// Двадцать усложнённых закономерностей (тройки и четвёрки), без простого чередования А–Б.
+// Первые два повтора — образец; следующий повтор ребёнок выкладывает самостоятельно.
+const patternCycles=[
+  ['leaf','leaf','cone'],
+  ['apple','leaf','cone'],
+  ['cone','apple','apple'],
+  ['leaf','cone','cone'],
+  ['leaf','apple','leaf'],
+  ['cone','leaf','apple'],
+  ['apple','apple','leaf'],
+  ['cone','cone','apple'],
+  ['apple','cone','apple'],
+  ['leaf','cone','apple'],
+  ['leaf','leaf','apple','cone'],
+  ['leaf','cone','cone','apple'],
+  ['apple','leaf','apple','cone'],
+  ['cone','apple','leaf','leaf'],
+  ['leaf','cone','apple','cone'],
+  ['apple','cone','leaf','apple'],
+  ['cone','leaf','leaf','apple'],
+  ['leaf','apple','cone','apple'],
+  ['apple','leaf','cone','cone'],
+  ['cone','apple','apple','leaf']
+];
+const patterns=patternCycles.map(cycle=>({base:[...cycle,...cycle],need:[...cycle]}));
+function newPatternDeck(){
+  const ids=shuffle(patterns.map((_,i)=>i));
+  // При новом прохождении первая закономерность не совпадает с прошлой.
+  if(lastFirstPatternId!==null&&ids[0]===lastFirstPatternId){
+    const other=ids.findIndex(id=>id!==lastFirstPatternId);
+    [ids[0],ids[other]]=[ids[other],ids[0]];
+  }
+  lastFirstPatternId=ids[0];
+  patternDeck=ids.slice(0,4);
+}
+function pattern(){
+  state.items=[];
+  const q=patterns[patternDeck[round]];
+  task('Продолжи узор на дорожке.','Нажимай на нужные предметы по порядку. Последний предмет можно убрать.');
+  board().innerHTML='<div id="pattern" class="pattern"></div><div class="pattern-tools"><button id="undoPattern" class="game-button">Убрать последний</button><div id="items" class="options"></div></div>';
+  function update(){
+    $('pattern').innerHTML=q.base.map(k=>'<span class="pattern-slot" style="border-style:solid">'+icon(k)+'</span>').join('')+q.need.map((_,i)=>'<span class="pattern-slot">'+(state.items[i]?icon(state.items[i]):'?')+'</span>').join('');
+    $('undoPattern').disabled=!state.items.length;
+  }
+  shuffle(['leaf','cone','apple']).forEach(k=>{
+    const b=button(icon(k),()=>{
+      if(state.items.length<q.need.length){
+        if(k!==q.need[state.items.length]){
+          fail('Посмотри, как повторяется узор. Выбери другой предмет.');
+          return;
+        }
+        state.items.push(k);
+        update();
+        if(correct())win();else $('status').textContent='';
+      }
+    },'token');
+    b.setAttribute('aria-label',{leaf:'Добавить лист',cone:'Добавить шишку',apple:'Добавить яблоко'}[k]);
+    $('items').append(b);
+  });
+  $('undoPattern').onclick=()=>{if(!solved){state.items.pop();update();}};
+  update();
+}
+const shares=[[2,4],[5,3],[2,6],[6,4]];
+function equal(){state.baskets=shares[round].map((n,j)=>Array.from({length:n},(_,i)=>j*10+i));state.apple=null;task('Сделай так, чтобы у зайца и медведя стало яблок поровну.','Выбери яблоко, затем нажми «Положить сюда» у другой корзинки. Можно перетаскивать яблоки.');board().innerHTML='<div id="baskets" class="baskets"></div>';const move=j=>{if(state.apple===null||solved)return;let from=state.baskets.findIndex(a=>a.includes(state.apple));if(from!==j){state.baskets[from]=state.baskets[from].filter(a=>a!==state.apple);state.baskets[j].push(state.apple);}state.apple=null;update();};function update(){const check=$('check');$('play').querySelector('.controls').prepend(check);$('baskets').innerHTML='';state.baskets.forEach((items,j)=>{const col=document.createElement('div');col.innerHTML=`<img class="scene-thumb" src="kolobok_${j?24:20}.jpg" alt="${j?'Медведь':'Заяц'}"><span class="basket-label">${j?'Медведю':'Зайцу'}</span>`;const basket=document.createElement('div');basket.className='basket';basket.setAttribute('aria-label',`Корзина ${j?'медведя':'зайца'}`);items.forEach(id=>{const b=button(icon('apple'),()=>{state.apple=id;update();},'token'+(state.apple===id?' selected':''));b.setAttribute('aria-label','Выбрать яблоко');draggable(b,id);basket.append(b);});drop(basket,id=>{state.apple=Number(id);move(j);});col.append(basket,button('Положить сюда',()=>move(j),'game-button'));$('baskets').append(col);});$('baskets').insertBefore(check,$('baskets').children[1]);}update();}
+const ordinals=[
+  {n:8,target:2,reverse:false,word:'второго',audio:TASK_MP3[6][0]},
+  {n:8,target:3,reverse:true,word:'третьего',audio:TASK_MP3[6][1]},
+  {n:8,target:4,reverse:false,word:'четвёртого',audio:TASK_MP3[6][2]},
+  {n:8,target:5,reverse:true,word:'пятого',audio:TASK_MP3[6][3]},
+  {n:8,target:6,reverse:false,word:'шестого',audio:TASK_MP3[6][4]},
+  {n:8,target:7,reverse:true,word:'седьмого',audio:TASK_MP3[6][5]},
+  {n:8,target:8,reverse:false,word:'последнего',audio:TASK_MP3[6][6]}
+];
+function newOrdinalDeck(){
+  const ids=shuffle(ordinals.map((_,i)=>i));
+  if(lastFirstOrdinalId!==null&&ids[0]===lastFirstOrdinalId){
+    const j=ids.findIndex(i=>i!==lastFirstOrdinalId);
+    [ids[0],ids[j]]=[ids[j],ids[0]];
+  }
+  lastFirstOrdinalId=ids[0];
+  ordinalDeck=ids.slice(0,4).map(i=>ordinals[i]);
+}
+function ordinal(){state.choice=null;const q=ordinalDeck[round];task(`Останови Колобка у ${q.word} пенька.`,'Считай от стрелки. Нажми на нужный пенёк.');board().innerHTML=`<div class="start-arrow" style="text-align:${q.reverse?'right':'left'}">${q.reverse?'← Начало':'Начало →'}</div><div id="stumps" class="stumps"></div>`;for(let i=0;i<q.n;i++){const b=button('',el=>{state.choice=i;document.querySelectorAll('.stump-btn').forEach(x=>{x.innerHTML='';x.classList.remove('selected');});el.innerHTML=hero();el.classList.add('selected');},'stump stump-btn');b.setAttribute('aria-label',`Пенёк ${i+1} слева`);$('stumps').append(b);}}
+const stories=[{a:8,b:13,correct:10,options:[10,6,21],altA:'Бабушка собрала муку',altB:'Колобок остывает на окне'},{a:14,b:16,correct:15,options:[15,19,9],altA:'Колобок на окне',altB:'Колобок на полу'},{a:21,b:24,correct:22,options:[22,26,20],altA:'Колобок укатился от зайца',altB:'Колобок встретил медведя'},{a:27,b:29,correct:28,options:[28,13,25],altA:'Лиса слушает песенку',altB:'Лиса съела Колобка'}];
+const moreStories=[
+{a:6,b:10,correct:8,options:[8,20,28],altA:'Бабушка собирает муку',altB:'Бабушка месит тесто'},
+{a:15,b:19,correct:16,options:[16,8,26],altA:'Колобок на лавке',altB:'Колобок за воротами'},
+{a:19,b:21,correct:20,options:[20,24,28],altA:'Колобок покидает двор',altB:'Колобок укатился от зайца'},
+{a:25,b:28,correct:27,options:[27,10,22],altA:'Колобок укатился от медведя',altB:'Колобок на носу у лисы'}
+];
+let storyDeck=[],lastStoryIds=[];
+function newStoryDeck(){const pool=[...stories,...moreStories];const fresh=shuffle(pool.map((_,i)=>i).filter(i=>!lastStoryIds.includes(i)));const ids=fresh.slice(0,4);lastStoryIds=ids;storyDeck=ids.map(i=>pool[i]);}
+function story(){state.choice=null;const q=storyDeck[round];task('Какой картинки не хватает между этими событиями?','Выбери подходящую картинку.');board().innerHTML=`<div class="story">${pic(q.a,q.altA)}<span>→</span><div id="missing" class="missing">?</div><span>→</span>${pic(q.b,q.altB)}</div><div id="storyOptions" class="story-options"></div>`;shuffle(q.options).forEach(n=>{const b=button(pic(n),el=>{state.choice=n;$('missing').innerHTML=pic(n);document.querySelectorAll('#storyOptions button').forEach(x=>x.classList.remove('selected'));el.classList.add('selected');if(correct())win();else fail();});b.setAttribute('aria-label',`Выбрать событие, вариант ${q.options.indexOf(n)+1}`);draggable(b,n);$('storyOptions').append(b);});drop($('missing'),n=>{state.choice=Number(n);$('missing').innerHTML=pic(n);if(correct())win();else fail();});}
+const renderers=[flour,route,hide,bridge,pattern,equal,ordinal,story];
+function correct(){switch(game){case 0:return state.n===state.target;case 1:return JSON.stringify(state.path)===JSON.stringify(routeDeck[round].moves);case 2:return state.place===spatialDeck[round].answer;case 3:return state.choice===state.target;case 4:return JSON.stringify(state.items)===JSON.stringify(patterns[patternDeck[round]].need);case 5:return state.baskets[0].length===state.baskets[1].length;case 6:{const q=ordinalDeck[round];return state.choice===(q.reverse?q.n-q.target:q.target-1);}case 7:return state.choice===storyDeck[round].correct;}}
+names.forEach((name,i)=>{const b=button(`<span class="num">ИГРА ${i+1}</span><h2>${name}</h2><p>${leads[i]}</p>`,()=>openGame(i),'game-card');b.onclick=()=>launchGame(i,b);$('cards').append(b);});
+$('check').onclick=()=>{if(solved){advance();return;}if([0,5,6].includes(game)){if(correct())win();else fail();}};
+function advance(){if(!solved)return;if(round===3)finish();else{round++;init();}}
+$('voiceStart').onclick=()=>{if([0,1,2,3,4,5,6,7].includes(game)){$('voiceStart').hidden=true;speakInstructions();}};
+$('voiceReplay').onclick=()=>{if(game!==0&&game!==1&&game!==7)speakInstructions(true);};$('reset').onclick=()=>{if(game===0){const old=flourTargets[round];const alternatives=[4,5,6,7,8].filter(x=>x!==old);flourTargets[round]=alternatives[Math.floor(Math.random()*alternatives.length)];}if(game===6){round=0;newOrdinalDeck();}init();};$('next').onclick=advance;$('back').onclick=menu;document.addEventListener('visibilitychange',()=>{if(document.hidden)stopAll();});window.addEventListener('pagehide',stopAll);
+
+const TITLE_MP3=['Помоги бабушке замесить тесто..mp3','Дорожка Колобка1.mp3','Спрячь Колобка.mp3','Почини мостик.mp3','Продолжи лесную дорожку.mp3','Зайцу и медведю — поровну.mp3','Который пенёк.mp3','чтО пропустил худОжник.mp3'];
+function stopTitle(){titleSession++;if(titlePlayer){titlePlayer.pause();titlePlayer.onended=null;titlePlayer.onerror=null;titlePlayer=null;}document.querySelectorAll('.is-loading').forEach(b=>b.classList.remove('is-loading'));}
+function launchGame(i,b){stopAll();const token=titleSession;b.classList.add('is-loading');const a=new Audio(TITLE_MP3[i]);titlePlayer=a;const done=()=>{if(token!==titleSession)return;stopTitle();openGame(i);};a.onended=done;a.onerror=done;a.play().catch(done);}
+let frame=0;
+function renderRetell(){$('retellImage').src='kolobok_'+String(frame+1).padStart(2,'0')+'.jpg';$('retellImage').alt='Кадр '+(frame+1)+' сказки Колобок';$('retellCount').textContent=(frame+1)+' / 29';$('retellPrev').disabled=frame===0;$('retellNext').disabled=frame===28;}
+$('retellPrev').onclick=()=>{if(frame>0){frame--;renderRetell();}};
+$('retellNext').onclick=()=>{if(frame<28){frame++;renderRetell();}};
+function sitePage(){const id=location.hash.slice(1)||'home';const valid=['home','lesson','menu','retell','files'];const target=valid.includes(id)?id:'home';stopAll();document.querySelectorAll('main>.page').forEach(p=>p.hidden=p.id!==target);if(target==='retell')renderRetell();window.scrollTo(0,0);}
+window.addEventListener('hashchange',sitePage);sitePage();
+</script></body></html>
