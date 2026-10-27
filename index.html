@@ -35,7 +35,7 @@
  #forest .stump{left:70%;top:58%;width:24%;height:19%}
  #forest .place{width:48px;height:48px;min-width:48px;min-height:48px;transform:translate(-50%,-50%);border-radius:50%}
  #forest .place .hero{width:48px;height:48px}
- #forest .place[data-place="0"]{left:16%!important;top:52%!important}
+ #forest .place[data-place="0"]{left:22%!important;top:72%!important}
  #forest .place[data-place="1"]{left:16%!important;top:88%!important}
  #forest .place[data-place="2"]{left:50%!important;top:72%!important}
  #forest .place[data-place="3"]{left:82%!important;top:88%!important}
@@ -43,7 +43,11 @@
 }
 
 /* The target stays visible; only the placed Kolobok goes behind the tree. */
-#forest .place.behind:not(.used){z-index:5}
+#forest .place.behind{z-index:2}
+
+.drag-ghost{position:fixed!important;z-index:10000!important;pointer-events:none!important;transform:translate(-50%,-50%);margin:0!important;opacity:.92;box-shadow:0 5px 18px #0003}
+.drag-source{opacity:.35}.drop-hover{outline:3px solid #bc782f;outline-offset:2px}
+.retry-options .token{border-color:#bc782f;background:#fff0cf;box-shadow:0 0 0 2px #bc782f55}
 </style></head><body><div class="shell"><header class="masthead"><div class="brand-block"><div class="brand"><img class="brand-avatar" src="avatar.jpg" width="54" height="54" alt="Аватарка канала: школьный рюкзак у открытых дверей школы" draggable="false"><span>Скоро в школу</span></div><p class="brand-tagline">Маленькими шагами к большим открытиям</p></div><span class="masthead-note">Занимаемся вместе</span></header><main><section id="home" class="page"><h1 class="heading">ЗАНЯТИЕ <span class="lesson-number">№ 2</span></h1>
 <div class="menu-row"><div class="row-label"><span class="section-index">01</span><h2>ТЕМА</h2></div><div class="topic-entry"><p class="topic-prompt">Послушай сказку и вспомни героев</p><a class="tile section-cover" href="#lesson" style="background:var(--sage)"><span><strong>Колобок. Математика в сказке</strong></span><span class="arrow" aria-hidden="true">↗</span></a></div></div>
 <div class="menu-row"><div class="row-label"><span class="section-index">02</span><h2>Играем и рассуждаем</h2></div><div class="topic-entry"><p class="topic-prompt">Игры</p><a class="tile picture-tile retell-cover" href="#menu"><img src="games-cover.jpg" alt="Игры с героями сказки Колобок" width="1200" height="900"><span class="arrow tile-arrow" aria-hidden="true">↗</span></a></div></div>
@@ -80,7 +84,7 @@ document.querySelectorAll('audio').forEach(a=>{
  a.addEventListener('play',()=>{document.querySelectorAll('audio').forEach(other=>{if(other!==a)other.pause();});});
 });
 
-const names=['Помоги бабушке замесить тесто','Дорожка Колобка','Спрячь Колобка','Почини мостик','Продолжи лесную дорожку','Зайцу и медведю — поровну','Который пенёк?','Что пропустил художник?'];
+const names=['Помоги бабушке замесить тесто','Дорожка Колобка','Поставь Колобка','Почини мостик','Продолжи лесную дорожку','Зайцу и медведю — поровну','Который пенёк?','Что пропустил художник?'];
 const leads=['Отмерь нужное количество муки.','Проведи героя по клеткам.','Найди место по подсказке.','Подбери дощечку по длине.','Разгадай и продолжи узор.','Уравняй яблоки в корзинках.','Считай по порядку от стрелки.','Восстанови событие сказки.'];
 const sounds={yes:managedAudio('победа.mp3'),no:managedAudio('проигрыш.mp3')};
 let game=0,round=0,solved=false,state={},dragValue=null;
@@ -214,8 +218,41 @@ function win(){if(solved)return;solved=true;feedback(true,'Получилось!
 function fail(msg='Пока не получилось. Попробуй ещё раз — всё можно исправить.'){feedback(false,msg);}
 function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 function button(text,fn,cls='choice'){const b=document.createElement('button');b.type='button';b.className=cls;b.innerHTML=text;b.onclick=()=>{if(!solved)fn(b);};return b;}
-function draggable(el,value){el.draggable=true;el.ondragstart=e=>{dragValue=value;e.dataTransfer.setData('text/plain',String(value));};el.ondragend=()=>{dragValue=null;};}
-function drop(el,fn){el.ondragover=e=>e.preventDefault();el.ondrop=e=>{e.preventDefault();if(!solved&&dragValue!==null)fn(dragValue);dragValue=null;};}
+// Pointer dragging works with a finger, stylus and mouse.
+const dropHandlers=new WeakMap();
+let suppressDragClickUntil=0;
+document.addEventListener('click',e=>{if(Date.now()<suppressDragClickUntil){e.preventDefault();e.stopImmediatePropagation();}},true);
+function draggable(el,value){
+ el.draggable=false;el.style.touchAction='none';
+ let gesture=null;
+ const clear=()=>{if(!gesture)return;gesture.ghost?.remove();el.classList.remove('drag-source');gesture=null;dragValue=null;document.querySelectorAll('.drop-hover').forEach(x=>x.classList.remove('drop-hover'));};
+ el.addEventListener('pointerdown',e=>{
+  if(solved||!e.isPrimary||e.button!==0)return;
+  gesture={id:e.pointerId,x:e.clientX,y:e.clientY,ghost:null};
+  el.setPointerCapture(e.pointerId);
+ });
+ el.addEventListener('pointermove',e=>{
+  if(!gesture||gesture.id!==e.pointerId)return;
+  if(!gesture.ghost&&Math.hypot(e.clientX-gesture.x,e.clientY-gesture.y)<6)return;
+  e.preventDefault();
+  if(!gesture.ghost){const ghost=el.cloneNode(true);ghost.removeAttribute('id');ghost.setAttribute('aria-hidden','true');ghost.classList.add('drag-ghost');const r=el.getBoundingClientRect();ghost.style.width=r.width+'px';ghost.style.height=r.height+'px';document.body.append(ghost);gesture.ghost=ghost;el.classList.add('drag-source');dragValue=value;}
+  gesture.ghost.style.left=e.clientX+'px';gesture.ghost.style.top=e.clientY+'px';
+  document.querySelectorAll('.drop-hover').forEach(x=>x.classList.remove('drop-hover'));
+  document.elementFromPoint(e.clientX,e.clientY)?.closest('[data-drop-zone]')?.classList.add('drop-hover');
+ });
+ el.addEventListener('pointerup',e=>{
+  if(!gesture||gesture.id!==e.pointerId)return;
+  const moved=!!gesture.ghost;
+  const target=moved?document.elementFromPoint(e.clientX,e.clientY)?.closest('[data-drop-zone]'):null;
+  const handler=target&&dropHandlers.get(target);
+  if(el.hasPointerCapture(e.pointerId))el.releasePointerCapture(e.pointerId);
+  clear();
+  if(moved){e.preventDefault();suppressDragClickUntil=Date.now()+350;if(handler&&!solved)handler(value);}
+ });
+ el.addEventListener('pointercancel',clear);
+ el.addEventListener('lostpointercapture',clear);
+}
+function drop(el,fn){el.dataset.dropZone='';dropHandlers.set(el,fn);}
 function task(t,h=''){ $('task').textContent=t;$('hint').textContent=h; }
 function init(){$('play').querySelector('.controls').prepend($('check'));state={};solved=false;stopAll();$('count').textContent=`${round+1} / 4`;$('progress').value=round;$('status').textContent='';$('status').className='game-status';$('check').hidden=game===1;$('check').disabled=![0,5,6].includes(game);$('check').textContent=game===6?'Остановить':([0,5].includes(game)?'Проверить':'Дальше →');$('next').hidden=true;$('reset').hidden=false;$('board').innerHTML='';renderers[game]();if(game!==5)$('board').append($('check'));if(game===5)$('baskets').insertBefore($('check'),$('baskets').children[1]);
   const needsStart=(game===0&&!grandmaPlayed)||(game===1&&!routePlayed)||(game===2&&round===0)||(game===3&&!bridgePlayed&&round===0)||(game===4&&!patternPlayed&&round===0)||(game===5&&!equalPlayed&&round===0)||(game===6&&round===0)||(game===7&&round===0&&!storyPlayed);
@@ -394,19 +431,15 @@ function pattern(){
   shuffle(['leaf','cone','apple']).forEach(k=>{
     const b=button(icon(k),()=>{
       if(state.items.length<q.need.length){
-        if(k!==q.need[state.items.length]){
-          fail('Посмотри, как повторяется узор. Выбери другой предмет.');
-          return;
-        }
         state.items.push(k);
         update();
-        if(correct())win();else $('status').textContent='';
+        if(state.items.length===q.need.length){if(correct())win();else{fail('Посмотри, как повторяется узор. Убери последние предметы и попробуй ещё раз.');$('items').classList.add('retry-options');}}else $('status').textContent='';
       }
     },'token');
     b.setAttribute('aria-label',{leaf:'Добавить лист',cone:'Добавить шишку',apple:'Добавить яблоко'}[k]);
     $('items').append(b);
   });
-  $('undoPattern').onclick=()=>{if(!solved){state.items.pop();update();}};
+  $('undoPattern').onclick=()=>{if(!solved){state.items.pop();$('items').classList.remove('retry-options');$('status').textContent='';update();}};
   update();
 }
 const shares=[[2,4],[5,3],[2,6],[6,4]];
@@ -450,7 +483,7 @@ $('voiceReplay').onclick=()=>{if(game!==0&&game!==1&&game!==7)speakInstructions(
 
 const TITLE_MP3=['Помоги бабушке замесить тесто..mp3','Дорожка Колобка1.mp3','Спрячь Колобка.mp3','Почини мостик.mp3','Продолжи лесную дорожку.mp3','Зайцу и медведю — поровну.mp3','Который пенёк.mp3','чтО пропустил худОжник.mp3'];
 function stopTitle(){titleSession++;if(titlePlayer){titlePlayer.pause();titlePlayer.onended=null;titlePlayer.onerror=null;titlePlayer=null;}document.querySelectorAll('.is-loading').forEach(b=>b.classList.remove('is-loading'));}
-function launchGame(i,b){openGame(i);const token=titleSession;const a=managedAudio(TITLE_MP3[i]);titlePlayer=a;const done=()=>{if(token===titleSession)stopTitle();};a.onended=done;a.onerror=done;a.play().catch(done);}
+function launchGame(i,b){openGame(i);const token=titleSession;const a=managedAudio(i===2?'Нажми на Колобка, затем кружок на полянке.mp3':TITLE_MP3[i]);titlePlayer=a;const done=()=>{if(token===titleSession)stopTitle();};a.onended=done;a.onerror=done;a.play().catch(done);}
 let frame=0;
 function renderRetell(){$('retellImage').src='kolobok_'+String(frame+1).padStart(2,'0')+'.jpg';$('retellImage').alt='Кадр '+(frame+1)+' сказки Колобок';$('retellCount').textContent=(frame+1)+' / 29';$('retellPrev').disabled=frame===0;$('retellNext').disabled=frame===28;}
 $('retellPrev').onclick=()=>{if(frame>0){frame--;renderRetell();}};
